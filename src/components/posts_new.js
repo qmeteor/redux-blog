@@ -15,22 +15,29 @@ class PostsNew extends Component {
                     type="text"
                     {...field.input}
                 />
+                {field.meta.error}
             </div>
         );
     }
 
+    onSubmit(values) {
+        console.log(values);
+    }
+
 
     render() {
+        const { handleSubmit } = this.props;
+
         return (
-            <form>
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 <Field
                     label="Title For Post"
-                    name="title"
+                    name="title" //names need to match inside error.title
                     component={this.renderField}
                 />
                 <Field
-                    label="Tags"
-                    name="tags"
+                    label="Categories"
+                    name="categories"
                     component={this.renderField}
                 />
                 <Field
@@ -38,6 +45,7 @@ class PostsNew extends Component {
                     name="content"
                     component={this.renderField}
                 />
+                <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
     }
@@ -61,5 +69,6 @@ function validate(values) {
 
 // 'PostsNewForm' just has to be unique string
 export default reduxForm({
+    validate,
     form: 'PostsNewForm'
 })(PostsNew);
