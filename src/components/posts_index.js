@@ -23,10 +23,11 @@ class PostsIndex extends Component {
     }
 
     render() {
+        console.log(this.props.post, "render post");
         return (
           <div>
               <div className="text-xs-right">
-                  <Link className="" to="/posts/new">
+                  <Link className="btn btn-primary" to="/posts/new">
                       Add a Post
                   </Link>
               </div>
